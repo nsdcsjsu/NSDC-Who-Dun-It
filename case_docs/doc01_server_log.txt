@@ -1,0 +1,43 @@
+CASE FILE #2291 — DOCUMENT 1
+CS DEPARTMENT NETWORK ACTIVITY LOG
+Source: Campus IT Network Monitoring System
+Filtered Range: 12:00 AM – 3:30 AM (Night of the Grade Portal Breach)
+Log Integrity: Partially recovered from backup server (some entries prior to 1:00 AM were lost due to a sync error)
+
+Timestamp    Device ID     IP Address       Action                  Notes
+12:14 AM     LAP-0771      10.0.4.94        Login                   Personal device
+12:22 AM     DESK-2260     10.0.4.117       Login                   Room 214
+12:31 AM     LAP-0902      10.0.4.91        Login                   Personal device
+12:47 AM     DESK-2255     10.0.4.109       Login                   Room 214
+01:02 AM     DESK-2280     10.0.4.112       Login                   Room 214
+01:09 AM     LAP-1055      10.0.4.97        Login                   Personal device
+01:15 AM     DESK-2270     10.0.4.128       Login                   Room 220
+01:22 AM     DESK-2260     10.0.4.117       Logout                  Room 214
+01:31 AM     LAP-1187      10.0.4.98        Login                   Personal device
+01:34 AM     DESK-2288     10.0.4.144       Login                   Room 218
+01:40 AM     DESK-2265     10.0.4.140       Login                   Room 218
+01:44 AM     LAP-0932      10.0.4.121       Login                   Personal device (registered off-campus MAC)
+01:47 AM     DESK-2296     10.0.4.149       Login                   Room 218
+01:52 AM     DESK-2299     10.0.4.145       Login                   Room 218
+01:55 AM     LAP-1140      10.0.4.109       Login                   Personal device — IP CONFLICT flagged, see note below
+01:58 AM     DESK-2291     10.0.4.147       Login                   Room 218
+02:01 AM     DESK-2278     10.0.4.133       Login                   Room 220
+02:03 AM     LAP-1140      10.0.4.109       Login (retry)           Conflict resolved, reassigned address
+02:06 AM     DESK-2297     10.0.4.150       Login                   Room 218
+02:11 AM     DESK-2278     10.0.4.133       Logout                  Room 220
+02:14 AM     DESK-2291     10.0.4.147       Portal Access Attempt   Grade Portal (denied — bad credentials)
+02:15 AM     DESK-2291     10.0.4.147       Portal Access Attempt   Grade Portal (denied — bad credentials)
+02:16 AM     DESK-2291     10.0.4.147       Portal Access - SUCCESS Grade Portal (session opened, 11 min duration)
+02:19 AM     LAP-0932      10.0.4.121       Logout                  Personal device
+02:22 AM     DESK-2296     10.0.4.149       Logout                  Room 218
+02:25 AM     DESK-2299     10.0.4.145       Logout                  Room 218
+02:27 AM     DESK-2291     10.0.4.147       Logout                  Room 218 — session ended
+02:33 AM     LAP-1055      10.0.4.97        Logout                  Personal device
+02:41 AM     DESK-2288     10.0.4.144       Logout                  Room 218
+02:47 AM     DESK-2270     10.0.4.128       Logout                  Room 220
+02:58 AM     DESK-2297     10.0.4.150       Logout                  Room 218
+03:05 AM     LAP-0771      10.0.4.94        Logout                  Personal device
+
+NOTE FROM IT: The IP conflict at 01:55 AM (LAP-1140) was caused by a DHCP lease overlap and is unrelated to the breach. It is included here for completeness and should not be treated as suspicious on its own.
+
+END OF DOCUMENT 1

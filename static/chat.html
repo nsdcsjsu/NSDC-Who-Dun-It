@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Ask the Detective Bot</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --panel: #161b22;
+    --accent: #ffb703;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --bot-bubble: #21262d;
+    --user-bubble: #ffb703;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Courier New', Courier, monospace;
+    background: var(--bg);
+    color: var(--text);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  header {
+    padding: 20px 30px;
+    border-bottom: 2px solid var(--accent);
+    background: var(--panel);
+  }
+  header h1 {
+    margin: 0;
+    font-size: 28px;
+    letter-spacing: 1px;
+  }
+  header p {
+    margin: 4px 0 0;
+    color: var(--muted);
+    font-size: 14px;
+  }
+  #chatWindow {
+    flex: 1;
+    overflow-y: auto;
+    padding: 24px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .bubble {
+    max-width: 70%;
+    padding: 12px 16px;
+    border-radius: 10px;
+    line-height: 1.4;
+    white-space: pre-wrap;
+    font-size: 16px;
+  }
+  .bot {
+    background: var(--bot-bubble);
+    align-self: flex-start;
+    border: 1px solid #30363d;
+  }
+  .user {
+    background: var(--user-bubble);
+    color: #111;
+    align-self: flex-end;
+    font-weight: bold;
+  }
+  .meta {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+  #inputBar {
+    display: flex;
+    padding: 18px 30px;
+    background: var(--panel);
+    border-top: 2px solid var(--accent);
+    gap: 12px;
+  }
+  #questionInput {
+    flex: 1;
+    padding: 14px 16px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #30363d;
+    background: #0d1117;
+    color: var(--text);
+    font-family: inherit;
+  }
+  #askBtn {
+    padding: 14px 26px;
+    font-size: 16px;
+    font-weight: bold;
+    background: var(--accent);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  #askBtn:disabled { opacity: 0.5; cursor: not-allowed; }
+  .thinking { color: var(--muted); font-style: italic; }
+</style>
+</head>
+<body>
+<header>
+  <h1>🔎 Detective Bot — Case #2291</h1>
+  <p>Ask about the evidence. It only knows what's in the case files — it will never tell you who did it.</p>
+</header>
+
+<div id="chatWindow"></div>
+
+<div id="inputBar">
+  <input id="questionInput" type="text" placeholder="Ask about the case... e.g. 'What device accessed the grade portal?'" autofocus />
+  <button id="askBtn">Ask</button>
+</div>
+
+<script>
+const chatWindow = document.getElementById('chatWindow');
+const input = document.getElementById('questionInput');
+const askBtn = document.getElementById('askBtn');
+
+function addBubble(text, who) {
+  const div = document.createElement('div');
+  div.className = 'bubble ' + who;
+  div.textContent = text;
+  chatWindow.appendChild(div);
+  chatWindow.scrollTop = chatWindow.scrollHeight;
+  return div;
+}
+
+async function ask() {
+  const question = input.value.trim();
+  if (!question) return;
+  input.value = '';
+  askBtn.disabled = true;
+
+  addBubble(question, 'user');
+  const thinkingBubble = addBubble('Searching the case files...', 'bot');
+  thinkingBubble.classList.add('thinking');
+
+  try {
+    const res = await fetch('/api/ask', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ question })
+    });
+    const data = await res.json();
+    thinkingBubble.classList.remove('thinking');
+    thinkingBubble.textContent = data.answer || 'No response.';
+  } catch (err) {
+    thinkingBubble.classList.remove('thinking');
+    thinkingBubble.textContent = 'Error reaching the detective bot. Is the server running?';
+  } finally {
+    askBtn.disabled = false;
+    input.focus();
+  }
+}
+
+askBtn.addEventListener('click', ask);
+input.addEventListener('keydown', (e) => { if (e.key === 'Enter') ask(); });
+</script>
+</body>
+</html>

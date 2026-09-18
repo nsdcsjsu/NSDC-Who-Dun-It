@@ -1,0 +1,24 @@
+CASE FILE #2291 — DOCUMENT 11
+INTERNAL IT MEMO — IP BLOCK ASSIGNMENTS, CS WING
+Distributed to: Department IT Staff
+Subject: Network Segmentation Reference (Annual Update)
+
+Room 214 (Lab Workstations): 10.0.4.100 – 10.0.4.115
+Room 218 (Lab Workstations): 10.0.4.140 – 10.0.4.150
+Room 220 (Lab Workstations): 10.0.4.120 – 10.0.4.135
+Faculty Offices, 2nd Floor: 10.0.4.160 – 10.0.4.175
+Personal Device Range (DHCP, all floors): 10.0.4.90 – 10.0.4.99
+Guest/Visitor Network: 10.0.5.0 – 10.0.5.255 (separate VLAN, cannot access internal grade portal)
+
+ADDITIONAL NOTE: The grade portal breach originated from an internal
+IP address, meaning it did not come from the Guest/Visitor Network or
+any off-campus connection. The connecting IP was within the Room 218
+lab workstation range.
+
+Personal devices connecting via DHCP are assigned addresses dynamically
+and are not tied to a fixed room location; the Personal Device Range
+overlaps in usage across all three lab rooms and cannot be used alone
+to determine which room a personal laptop was physically located in
+that night.
+
+END OF DOCUMENT 11

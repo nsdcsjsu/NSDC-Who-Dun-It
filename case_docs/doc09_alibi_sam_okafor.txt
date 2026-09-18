@@ -1,0 +1,24 @@
+CASE FILE #2291 — DOCUMENT 9
+ALIBI STATEMENT — SAM OKAFOR
+Interviewed by: Campus Security, morning after incident
+
+"My laptop has been at the campus repair shop since Friday of last
+week — I cracked the screen playing intramural soccer, of all things.
+I haven't had a working personal device all week, and my desk unit in
+Room 214 (DESK-2265) has been having login issues since the semester
+started, so I honestly haven't used it much either.
+
+I was home last night. My apartment doesn't have a doorman or camera
+system so I don't have a great way to prove it, but I really wasn't on
+campus. Feel free to check with the repair shop."
+
+ATTACHED: IT Repair Shop Ticket #8834
+Customer: S. Okafor
+Device: Personal laptop, cracked screen
+Intake Date: Friday (previous week)
+Status: Awaiting parts, pickup not yet scheduled
+Repair Shop Hours: Closed 6 PM – 9 AM, no overnight access
+
+ADDITIONAL IT NOTE: DESK-2265 login issue ticket (#8790) confirms recurring authentication errors on this device dating back three weeks, unrelated to the incident.
+
+END OF DOCUMENT 9

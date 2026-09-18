@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>How the AI is Searching for Clues</title>
+<style>
+  :root {
+    --bg: #05070a;
+    --panel: #0d1117;
+    --accent: #39d353;
+    --text: #c9d1d9;
+    --muted: #6e7681;
+    --bar-bg: #21262d;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Courier New', Courier, monospace;
+    background: var(--bg);
+    color: var(--text);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  header {
+    padding: 18px 30px;
+    border-bottom: 2px solid var(--accent);
+    background: var(--panel);
+  }
+  header h1 { margin: 0; font-size: 24px; color: var(--accent); }
+  header p { margin: 4px 0 0; color: var(--muted); font-size: 13px; }
+
+  #questionBanner {
+    padding: 16px 30px;
+    font-size: 22px;
+    color: #fff;
+    background: #111820;
+    border-bottom: 1px solid #21262d;
+    min-height: 30px;
+  }
+
+  #content {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 24px 30px;
+    overflow: hidden;
+  }
+
+  .panel {
+    background: var(--panel);
+    border: 1px solid #21262d;
+    border-radius: 10px;
+    padding: 18px;
+    overflow-y: auto;
+  }
+  .panel h2 {
+    margin-top: 0;
+    font-size: 15px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  #scanList div {
+    padding: 6px 8px;
+    margin-bottom: 4px;
+    border-radius: 4px;
+    font-size: 14px;
+    color: var(--muted);
+    transition: all 0.3s ease;
+  }
+  #scanList div.hit {
+    background: rgba(57, 211, 83, 0.12);
+    color: var(--accent);
+    font-weight: bold;
+  }
+
+  .scoreRow { margin-bottom: 12px; }
+  .scoreLabel {
+    font-size: 13px;
+    margin-bottom: 4px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .scoreBarBg {
+    background: var(--bar-bg);
+    border-radius: 4px;
+    height: 10px;
+    overflow: hidden;
+  }
+  .scoreBarFill {
+    background: var(--accent);
+    height: 100%;
+    width: 0%;
+    transition: width 0.6s ease;
+  }
+
+  #contextBox {
+    grid-column: 1 / span 2;
+    background: var(--panel);
+    border: 1px solid #21262d;
+    border-radius: 10px;
+    padding: 18px;
+    max-height: 30vh;
+    overflow-y: auto;
+  }
+  #contextBox h2 { margin-top: 0; font-size: 15px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+  #contextText { white-space: pre-wrap; font-size: 13px; color: var(--text); }
+
+  .blinking { animation: blink 1s infinite; }
+  @keyframes blink { 50% { opacity: 0.3; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>⚙ How the AI is Searching for Clues</h1>
+  <p>Live view of the retrieval pipeline (vector search over the case files)</p>
+</header>
+
+<div id="questionBanner">Waiting for a question from the Detective Bot terminal...</div>
+
+<div id="content">
+  <div class="panel">
+    <h2>Scanning Documents</h2>
+    <div id="scanList"></div>
+  </div>
+  <div class="panel">
+    <h2>Top Matches (similarity score)</h2>
+    <div id="scoreList"></div>
+  </div>
+</div>
+
+<div id="contextBox">
+  <h2>Context Sent to the Model</h2>
+  <div id="contextText" class="muted">— nothing yet —</div>
+</div>
+
+<script>
+const ALL_DOC_TITLES = [
+  "doc01_server_log", "doc02_building_access", "doc03_witness_janitor",
+  "doc04_witness_roommate", "doc05_device_registry", "doc06_lab_access_approval",
+  "doc07_store_receipts", "doc08_alibi_maria_chen", "doc09_alibi_sam_okafor",
+  "doc10_alibi_room218_suspects", "doc11_ip_block_memo", "doc12_room218_keylog",
+  "doc13_social_media"
+];
+
+const questionBanner = document.getElementById('questionBanner');
+const scanList = document.getElementById('scanList');
+const scoreList = document.getElementById('scoreList');
+const contextText = document.getElementById('contextText');
+
+function renderScanList(hitDocIds) {
+  scanList.innerHTML = '';
+  ALL_DOC_TITLES.forEach((title) => {
+    const div = document.createElement('div');
+    div.textContent = title + '.txt';
+    scanList.appendChild(div);
+  });
+  // stagger the "scanning" highlight animation
+  let i = 0;
+  const rows = scanList.querySelectorAll('div');
+  const interval = setInterval(() => {
+    if (i >= rows.length) { clearInterval(interval); return; }
+    const title = ALL_DOC_TITLES[i];
+    if (hitDocIds.includes(title)) {
+      rows[i].classList.add('hit');
+    }
+    i++;
+  }, 90);
+}
+
+function renderScores(results) {
+  scoreList.innerHTML = '';
+  results.forEach((r) => {
+    const row = document.createElement('div');
+    row.className = 'scoreRow';
+    row.innerHTML = `
+      <div class="scoreLabel"><span>${r.doc_id} (chunk ${r.chunk_index})</span><span>${r.score}</span></div>
+      <div class="scoreBarBg"><div class="scoreBarFill"></div></div>
+    `;
+    scoreList.appendChild(row);
+    requestAnimationFrame(() => {
+      row.querySelector('.scoreBarFill').style.width = (r.score * 100) + '%';
+    });
+  });
+}
+
+function renderContext(results) {
+  contextText.textContent = results.map(r =>
+    `[${r.doc_id} chunk ${r.chunk_index}] (relevance ${r.score})\n${r.text}`
+  ).join('\n\n---\n\n');
+}
+
+const evtSource = new EventSource('/api/stream');
+evtSource.onmessage = (e) => {
+  const event = JSON.parse(e.data);
+
+  if (event.type === 'question') {
+    questionBanner.textContent = '❓ ' + event.question;
+    questionBanner.classList.add('blinking');
+    scoreList.innerHTML = '<p class="muted">Scanning...</p>';
+    contextText.textContent = '— retrieving —';
+  }
+
+  if (event.type === 'retrieved') {
+    questionBanner.classList.remove('blinking');
+    const hitDocIds = event.results.map(r => r.doc_id);
+    renderScanList(hitDocIds);
+    setTimeout(() => renderScores(event.results), rowDelay(hitDocIds));
+    setTimeout(() => renderContext(event.results), rowDelay(hitDocIds) + 200);
+  }
+};
+
+function rowDelay(hitDocIds) {
+  // roughly matches the scan animation duration so scores appear after scanning finishes
+  return ALL_DOC_TITLES.length * 90 + 100;
+}
+</script>
+</body>
+</html>

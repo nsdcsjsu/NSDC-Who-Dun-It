@@ -1,0 +1,45 @@
+CASE FILE #2291 — DOCUMENT 13
+SOCIAL MEDIA POSTS (Public, Timestamped) — Collected via campus social monitoring tool used for the investigation
+
+POST 1
+@campuslifeSJ — posted 11:58 PM
+"pulling an all nighter is not the vibe but here we are 😩 #capstone"
+[No location tag]
+[Username: unrelated to case, posted by a first-year student not connected to CS wing]
+
+POST 2
+@campuslifeSJ — posted 1:02 AM
+"library at 1am hits different fr"
+[Location tag: Main Library]
+[Username partially visible: mchen___]
+
+POST 3
+@campuslifeSJ — posted 1:45 AM
+"ugh lab is so cold tonight, why do they keep the AC on during
+deadline week 💀"
+[Location tag: near CS Building]
+[Username partially visible in screenshot: jreyes____]
+
+POST 4
+@campuslifeSJ — posted 1:51 AM
+"if i don't finish this by friday i'm actually going to lose it lol"
+[No location tag]
+[Username partially visible: ptorres__ — NOTE: does not match any known student in this case; likely unrelated account]
+
+POST 5
+@campuslifeSJ — posted 2:10 AM
+"shoutout to whoever left their charger in room 220, it's charging my
+phone right now lol"
+[Location tag: CS Building]
+[Username partially visible: nvolkov__]
+
+POST 6
+@campuslifeSJ — posted 2:22 AM
+"home. finally. never doing an all nighter again (i will do another
+all nighter tomorrow)"
+[Location tag: off-campus apartment complex]
+[Username partially visible: panand___]
+
+MONITORING TOOL NOTE: Not all posts could be geotagged accurately due to privacy settings on some accounts. Post 4's username does not match any name appearing elsewhere in this case file and may belong to an account with no connection to the incident.
+
+END OF DOCUMENT 13

@@ -1,0 +1,16 @@
+CASE FILE #2291 — DOCUMENT 12
+ROOM 218 WORKSTATION CHECKOUT LOG
+Source: Physical sign-out sheet posted on Room 218 door (workstations must be checked out with a badge scan due to limited seating during deadline week)
+
+Device ID     Checked Out By Badge   Time Checked Out   Time Returned
+DESK-2288     C-0781                 01:20 AM           02:05 AM
+DESK-2291     C-1188                 01:50 AM           02:30 AM
+DESK-2296     C-2933                 12:58 AM           01:47 AM
+DESK-2297     C-0981                 01:33 AM           02:56 AM
+DESK-2296     (re-checked out)       C-3110             02:00 AM           02:20 AM
+
+FRONT DESK NOTE: Workstations DESK-2289, DESK-2290, and DESK-2292 through DESK-2295 were not checked out at all last night — those seats were empty for most of the evening. Room 218 was noticeably less crowded than usual for a deadline week, likely because several students opted to work from Room 220 or their own laptops instead.
+
+Badge C-1188 is registered as a returning badge holder for Room 218 this semester (used it at least 4 other times in the past two weeks per this same sign-out sheet, earlier pages not attached).
+
+END OF DOCUMENT 12

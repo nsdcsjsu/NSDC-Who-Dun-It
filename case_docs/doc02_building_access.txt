@@ -1,0 +1,32 @@
+CASE FILE #2291 — DOCUMENT 2
+CS BUILDING SWIPE-CARD ACCESS LOG
+Source: Campus Facilities Security System
+Range: 11:00 PM – 3:30 AM
+
+Time         Card ID       Entry/Exit    Door
+11:14 PM     C-0554        Entry         Main Lobby
+11:36 PM     C-1391        Entry         Main Lobby
+12:02 AM     C-0554        Exit          Main Lobby
+12:22 AM     C-2050        Entry         Side Door B
+12:39 AM     C-1391        Exit          Main Lobby
+12:47 AM     C-1042        Entry         Main Lobby
+01:05 AM     C-2933        Entry         Main Lobby
+01:15 AM     C-2207        Entry         Main Lobby
+01:20 AM     C-2050        Exit          Side Door B
+01:29 AM     C-0781        Entry         Side Door B
+01:36 AM     C-0981        Entry         Main Lobby
+01:44 AM     C-1188        Entry         Main Lobby
+01:49 AM     C-2933        Exit          Main Lobby
+01:58 AM     C-3110        Entry         Side Door B
+02:07 AM     C-0781        Exit          Side Door B
+02:19 AM     C-1042        (badge re-swipe, no exit recorded between)
+02:22 AM     C-3110        Exit          Side Door B
+02:40 AM     C-2207        Exit          Main Lobby
+02:52 AM     C-1042        Exit          Main Lobby
+02:58 AM     C-1188        Exit          Main Lobby
+03:03 AM     C-0981        Exit          Main Lobby (tailgated with another student, per door camera note)
+03:10 AM     C-0981        (duplicate log entry — system glitch, see facilities ticket #4471)
+
+FACILITIES NOTE: Card ID to student name mapping is maintained separately by Student Services and is not included in this log for privacy reasons. Badge numbers beginning with "C-0" are assigned to underclassmen; "C-1" and "C-2" series badges are assigned to upperclassmen and graduate students; "C-3" series badges are temporary/guest badges.
+
+END OF DOCUMENT 2

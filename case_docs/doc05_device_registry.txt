@@ -1,0 +1,26 @@
+CASE FILE #2291 — DOCUMENT 5
+CS DEPARTMENT DEVICE REGISTRY (PARTIAL — WATER DAMAGE FROM CEILING LEAK)
+Source: Department IT Asset Management System, printed copy recovered from Room 218 storage closet
+
+Device ID     Owner Name          Room Assigned    Notes
+DESK-2255     E. Whitfield        Room 214         Active
+DESK-2260     M. Chen             Room 214         Active
+DESK-2265     S. Okafor           Room 214         Active
+DESK-2270     N. Volkov           Room 220         Active
+DESK-2278     R. Iyer             Room 220         Active
+DESK-2280     K. Brooks           Room 214         Active
+DESK-2288     A. Bello            Room 218         Active
+DESK-2291     [DATA CORRUPTED — WATER DAMAGE, NAME AND ROOM UNREADABLE]
+DESK-2296     C. Delgado          Room 218         Active
+DESK-2297     P. Anand            Room 218         Active
+DESK-2299     A. Whitfield        Room 220         Active
+LAP-0771      M. Lee              N/A (personal)   Registered off-campus device
+LAP-0902      T. Nguyen           N/A (personal)   Registered off-campus device
+LAP-0932      T. Nguyen           N/A (personal)   Secondary registered device
+LAP-1055      D. Patel            N/A (personal)   Registered off-campus device
+LAP-1140      J. Park             N/A (personal)   Registered off-campus device
+LAP-1187      D. Patel            N/A (personal)   Secondary registered device
+
+FACILITIES NOTE: Three additional rows below DESK-2291 were fully destroyed by water damage and could not be recovered. A replacement asset audit is scheduled for next semester.
+
+END OF DOCUMENT 5
